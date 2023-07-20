@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.model.Event;
+import org.example.model.Order;
 import org.example.model.TicketCategory;
 import org.example.repository.*;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,10 @@ public class TicketsManagementService implements IServices{
     @Override
     public List<TicketCategory> getAllTicketsForAnEventID(Event event){
         return ticketCategoryRepository.findTicketCategoriesByEvent(event);
+    }
+
+    @Override
+    public List<Order> getOrdersByCustomerID(Integer customerID) {
+        return orderRepository.getOrdersByCustomerIDCustomerID(customerID);
     }
 }

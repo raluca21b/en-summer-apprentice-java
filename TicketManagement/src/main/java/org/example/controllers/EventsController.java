@@ -23,7 +23,18 @@ public class EventsController {
         System.out.println("Creating Events Controller.......");
     }
 
-    public List<TicketCategoryDTO> getDTOsFromTicketCategorys(List<TicketCategory> ticketCategorys){
+    @GetMapping("/events")
+    public ResponseEntity<?> getEvents(@RequestParam(value="venueID") Integer venueID, @RequestParam(value = "eventTypeName") String eventTypeName){
+        List<Event> events= ticketsManagementService.getAllEventsByVenueIdAndEventTypeName(venueID,eventTypeName);
+        List<EventDTO> eventsDTOs= getDTOSFromEvents(events);
+        if (eventsDTOs.size() == 0)
+            return new ResponseEntity<String>("Events not found", HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<List<EventDTO>>(eventsDTOs, HttpStatus.OK);
+
+    }
+
+    private List<TicketCategoryDTO> getDTOsFromTicketCategorys(List<TicketCategory> ticketCategorys){
         List<TicketCategoryDTO> ticketCategoryDTOS = new ArrayList<>();
         for (TicketCategory ticketCategory:ticketCategorys
         ) {
@@ -33,7 +44,7 @@ public class EventsController {
         return ticketCategoryDTOS;
     }
 
-    public List<EventDTO> getDTOSFromEvents(List<Event> events){
+    private List<EventDTO> getDTOSFromEvents(List<Event> events){
         List<EventDTO> eventsDTOs= new ArrayList<>();
         for (Event event:events
         ) {
@@ -44,16 +55,5 @@ public class EventsController {
             eventsDTOs.add(eventDTO);
         }
         return eventsDTOs;
-    }
-
-    @GetMapping("/events")
-    public ResponseEntity<?> getEvents(@RequestParam(value="venueID") Integer venueID, @RequestParam(value = "eventTypeName") String eventTypeName){
-        List<Event> events= ticketsManagementService.getAllEventsByVenueIdAndEventTypeName(venueID,eventTypeName);
-        List<EventDTO> eventsDTOs= getDTOSFromEvents(events);
-        if (eventsDTOs.size() == 0)
-            return new ResponseEntity<String>("Events not found", HttpStatus.NOT_FOUND);
-        else
-            return new ResponseEntity<List<EventDTO>>(eventsDTOs, HttpStatus.OK);
-
     }
 }
