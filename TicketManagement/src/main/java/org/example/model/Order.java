@@ -1,69 +1,86 @@
 package org.example.model;
 
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="Orders")
+@Table(name = "Orders")
 public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="order_ID")
-    private Integer orderID;
+    @Column(name = "order_ID")
+    private int orderID;
 
-    @JoinColumn (name = "customer_ID", referencedColumnName = "customer_ID")
+    @JoinColumn(name = "customer_ID", referencedColumnName = "customer_ID")
     @ManyToOne
-    private Customer customerID;
+    private Customer customer;
 
-    @JoinColumn (name = "ticket_category_ID", referencedColumnName = "ticket_category_ID")
+    @JoinColumn(name = "ticket_category_ID", referencedColumnName = "ticket_category_ID")
     @ManyToOne
-    private TicketCategory ticketCategoryID;
-    @Column(name="ordered_at")
+    private TicketCategory ticketCategory;
+    @Column(name = "ordered_at")
     private LocalDateTime orderedAt;
 
-    @Column(name="number_of_tickets")
-    private Integer numberOfTickets;
+    @Column(name = "number_of_tickets")
+    private int numberOfTickets;
 
-    @Column(name="total_price")
+    @Column(name = "total_price")
     private BigDecimal totalPrice;
 
     public Order() {
     }
 
-    public Order(Integer orderID, Customer customerID, TicketCategory ticketCategoryID, LocalDateTime orderedAt, Integer numberOfTickets, BigDecimal totalPrice) {
-        this.orderID = orderID;
-        this.customerID = customerID;
-        this.ticketCategoryID = ticketCategoryID;
+    public Order(Customer customer, TicketCategory ticketCategory, LocalDateTime orderedAt,
+                 int numberOfTickets, BigDecimal totalPrice) {
+        this.customer = customer;
+        this.ticketCategory = ticketCategory;
         this.orderedAt = orderedAt;
         this.numberOfTickets = numberOfTickets;
         this.totalPrice = totalPrice;
     }
 
-    public Integer getOrderID() {
+    public Order(int orderID, Customer customer, TicketCategory ticketCategory,
+                 LocalDateTime orderedAt, int numberOfTickets, BigDecimal totalPrice) {
+        this.orderID = orderID;
+        this.customer = customer;
+        this.ticketCategory = ticketCategory;
+        this.orderedAt = orderedAt;
+        this.numberOfTickets = numberOfTickets;
+        this.totalPrice = totalPrice;
+    }
+
+    public int getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(Integer order_ID) {
+    public void setOrderID(int order_ID) {
         this.orderID = order_ID;
     }
 
-    public Customer getCustomerID() {
-        return customerID;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerID(Customer customer_ID) {
-        this.customerID = customer_ID;
+    public void setCustomer(Customer customer_ID) {
+        this.customer = customer_ID;
     }
 
-    public TicketCategory getTicketCategoryID() {
-        return ticketCategoryID;
+    public TicketCategory getTicketCategory() {
+        return ticketCategory;
     }
 
-    public void setTicketCategoryID(TicketCategory ticketCategoryID) {
-        this.ticketCategoryID = ticketCategoryID;
+    public void setTicketCategory(TicketCategory ticketCategoryID) {
+        this.ticketCategory = ticketCategoryID;
     }
 
     public LocalDateTime getOrderedAt() {
@@ -74,11 +91,11 @@ public class Order implements Serializable {
         this.orderedAt = ordered_at;
     }
 
-    public Integer getNumberOfTickets() {
+    public int getNumberOfTickets() {
         return numberOfTickets;
     }
 
-    public void setNumberOfTickets(Integer number_of_tickets) {
+    public void setNumberOfTickets(int number_of_tickets) {
         this.numberOfTickets = number_of_tickets;
     }
 
@@ -94,8 +111,8 @@ public class Order implements Serializable {
     public String toString() {
         return "Order{" +
                 "orderID=" + orderID +
-                ", customerID=" + customerID +
-                ", ticketCategoryID=" + ticketCategoryID +
+                ", customer=" + customer +
+                ", ticketCategory=" + ticketCategory +
                 ", ordered_at=" + orderedAt +
                 ", number_of_tickets=" + numberOfTickets +
                 ", total_price=" + totalPrice +

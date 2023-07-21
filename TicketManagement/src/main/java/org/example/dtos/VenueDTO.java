@@ -1,35 +1,17 @@
-package org.example.model;
+package org.example.dtos;
 
+import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-
-
-@Entity
-@Table(name="Venue")
-public class Venue {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="venue_ID")
+public class VenueDTO implements Serializable {
     private int venueID;
-
-    @Column(name="location")
     private String location;
-
-    @Column(name="type")
     private String type;
-
-    @Column(name="capacity")
     private int capacity;
 
-    public Venue() {
+    public VenueDTO() {
     }
 
-    public Venue(int venueID, String location, String type, int capacity) {
+    public VenueDTO(int venueID, String location, String type, int capacity) {
         this.venueID = venueID;
         this.location = location;
         this.type = type;
@@ -70,7 +52,7 @@ public class Venue {
 
     @Override
     public String toString() {
-        return "Venue{" +
+        return "VenueDTO{" +
                 "venueID=" + venueID +
                 ", location='" + location + '\'' +
                 ", type='" + type + '\'' +

@@ -1,34 +1,29 @@
 package org.example.dtos;
 
-import org.example.model.Event;
-import org.example.model.TicketCategory;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TicketCategoryDTO implements Serializable {
 
-    private Integer ticketCategoryID;
+    private int ticketCategoryID;
     private String description;
     private BigDecimal price;
 
     public TicketCategoryDTO() {
     }
 
-    public TicketCategoryDTO(Integer ticketCategoryID, String description, BigDecimal price) {
+    public TicketCategoryDTO(int ticketCategoryID, String description, BigDecimal price) {
         this.ticketCategoryID = ticketCategoryID;
         this.description = description;
         this.price = price;
     }
 
-    public Integer getTicketCategoryID() {
+    public int getTicketCategoryID() {
         return ticketCategoryID;
     }
 
-    public void setTicketCategoryID(Integer ticketCategoryID) {
+    public void setTicketCategoryID(int ticketCategoryID) {
         this.ticketCategoryID = ticketCategoryID;
     }
 

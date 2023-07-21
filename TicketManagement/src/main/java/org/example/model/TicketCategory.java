@@ -1,7 +1,14 @@
 package org.example.model;
 
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -11,7 +18,7 @@ public class TicketCategory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ticket_category_ID")
-    private Integer ticketCategoryID;
+    private int ticketCategoryID;
 
     @JoinColumn (name = "event_ID", referencedColumnName = "event_ID")
     @ManyToOne
@@ -26,18 +33,18 @@ public class TicketCategory implements Serializable {
     public TicketCategory() {
     }
 
-    public TicketCategory(Integer ticketCategoryID, Event event, String description, BigDecimal price) {
+    public TicketCategory(int ticketCategoryID, Event event, String description, BigDecimal price) {
         this.ticketCategoryID = ticketCategoryID;
         this.event = event;
         this.description = description;
         this.price = price;
     }
 
-    public Integer getTicketCategoryID() {
+    public int getTicketCategoryID() {
         return ticketCategoryID;
     }
 
-    public void setTicketCategoryID(Integer ticketCategoryID) {
+    public void setTicketCategoryID(int ticketCategoryID) {
         this.ticketCategoryID = ticketCategoryID;
     }
 

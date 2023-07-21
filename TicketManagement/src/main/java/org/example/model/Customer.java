@@ -1,6 +1,12 @@
 package org.example.model;
 
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
 import java.io.Serializable;
 
 @Entity
@@ -9,7 +15,7 @@ public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="customer_ID")
-    private Integer customerID;
+    private int customerID;
 
     @Column(name="customer_name")
     private String customerName;
@@ -21,17 +27,17 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    public Customer(Integer customer_ID, String customerName, String email) {
-        this.customerID = customer_ID;
+    public Customer(int customerID, String customerName, String email) {
+        this.customerID = customerID;
         this.customerName = customerName;
         this.email = email;
     }
 
-    public Integer getCustomerID() {
+    public int getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(Integer customer_ID) {
+    public void setCustomerID(int customer_ID) {
         this.customerID = customer_ID;
     }
 
