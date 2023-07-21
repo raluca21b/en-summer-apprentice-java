@@ -22,7 +22,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class TicketsManagementService implements IServices{
+public class TicketsManagementService implements IServices {
     private final CustomerRepository customerRepository;
     private final EventRepository eventRepository;
     private final EventTypeRepository eventTypeRepository;
@@ -30,7 +30,9 @@ public class TicketsManagementService implements IServices{
     private final TicketCategoryRepository ticketCategoryRepository;
     private final OrderRepository orderRepository;
 
-    public TicketsManagementService(CustomerRepository customerRepository, EventRepository eventRepository, EventTypeRepository eventTypeRepository, VenueRepository venueRepository, TicketCategoryRepository ticketCategoryRepository, OrderRepository orderRepository) {
+    public TicketsManagementService(CustomerRepository customerRepository, EventRepository eventRepository,
+                                    EventTypeRepository eventTypeRepository, VenueRepository venueRepository,
+                                    TicketCategoryRepository ticketCategoryRepository, OrderRepository orderRepository) {
         this.customerRepository = customerRepository;
         this.eventRepository = eventRepository;
         this.eventTypeRepository = eventTypeRepository;
@@ -40,8 +42,8 @@ public class TicketsManagementService implements IServices{
     }
 
     @Override
-    public List<Event> getAllEventsByVenueIdAndEventTypeName(Integer venueId,String eventTypeName){
-        return eventRepository.getAllByVenueVenueIDAndEventTypeEventTypeName(venueId,eventTypeName);
+    public List<Event> getAllEventsByVenueIdAndEventTypeName(int venueId, String eventTypeName) {
+        return eventRepository.getAllByVenueVenueIDAndEventTypeEventTypeName(venueId, eventTypeName);
     }
 
     @Override
@@ -50,7 +52,7 @@ public class TicketsManagementService implements IServices{
     }
 
     @Override
-    public List<Event> getAllEventsByVenueId(Integer venueId) {
+    public List<Event> getAllEventsByVenueId(int venueId) {
         return eventRepository.getAllByVenueVenueID(venueId);
     }
 
@@ -60,30 +62,28 @@ public class TicketsManagementService implements IServices{
     }
 
     @Override
-    public List<TicketCategory> getAllTicketsForAnEvent(Event event){
+    public List<TicketCategory> getAllTicketsForAnEvent(Event event) {
         return ticketCategoryRepository.findTicketCategoriesByEvent(event);
     }
 
     @Override
-    public List<Order> getOrdersByCustomerID(Integer customerID) {
+    public List<Order> getOrdersByCustomerID(int customerID) {
         return orderRepository.getOrdersByCustomerCustomerID(customerID);
     }
 
     @Override
-    public Optional<Order> saveOrder(Integer customerID, Integer eventID, Integer ticketCategoryID,Integer numberOfTickets) {
-        TicketCategory ticketCategory = ticketCategoryRepository.findTicketCategoryByTicketCategoryID(ticketCategoryID);
-        Order order;
-        if (ticketCategory == null ){
+    public Optional<Order> saveOrder(int customerID, int eventID, int ticketCategoryID, int numberOfTickets) {
+        Optional<TicketCategory> ticketCategory = ticketCategoryRepository.findTicketCategoryByTicketCategoryID(ticketCategoryID);
+        if (ticketCategory.isEmpty()) {
             return Optional.empty();
-        }else if(!Objects.equals(ticketCategory.getEvent().getEventID(), eventID)){
+        } else if (!ticketCategory.get().getEvent().getEventID().equals(eventID)) {
             return Optional.empty();
-        }
-        else{
-            BigDecimal totalPrice = BigDecimal.valueOf(numberOfTickets).multiply(ticketCategory.getPrice());
+        } else {
+            BigDecimal totalPrice = BigDecimal.valueOf(numberOfTickets).multiply(ticketCategory.get().getPrice());
             Customer customer = customerRepository.getById(customerID);
-            order = new Order(customer,ticketCategory, LocalDateTime.now(),numberOfTickets,totalPrice);
-            orderRepository.save(order);
+            Order order = new Order(customer, ticketCategory.get(), LocalDateTime.now(), numberOfTickets, totalPrice);
+            order = orderRepository.save(order);
+            return Optional.of(order);
         }
-        return Optional.of(order);
     }
 }

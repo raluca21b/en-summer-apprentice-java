@@ -11,23 +11,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @RestController
 public class EventsController {
-    private TicketsManagementService ticketsManagementService;
+    private final TicketsManagementService ticketsManagementService;
 
     public EventsController(TicketsManagementService ticketsManagementService) {
         this.ticketsManagementService = ticketsManagementService;
     }
 
     @GetMapping("/events")
-    public List<EventDTO> getEvents(@RequestParam(value = "venueID", required = false) Integer venueID, @RequestParam(value = "eventTypeName", required = false) String eventTypeName) {
+    public List<EventDTO> getEvents(@RequestParam(value = "venueID", required = false) int venueID,
+                                    @RequestParam(value = "eventTypeName", required = false) String eventTypeName) {
 
         List<Event> events;
-        if (venueID == null && eventTypeName == null) {
+
+        if (venueID == 0 && eventTypeName == null) {
             events = ticketsManagementService.getAllEvents();
-        } else if (venueID == null) {
+        } else if (venueID == 0) {
             events = ticketsManagementService.getAllEventsByEventTypeName(eventTypeName);
         } else if (eventTypeName == null) {
 
@@ -35,14 +37,17 @@ public class EventsController {
         } else {
             events = ticketsManagementService.getAllEventsByVenueIdAndEventTypeName(venueID, eventTypeName);
         }
+
         return getDTOSFromEvents(events);
 
     }
 
     private List<TicketCategoryDTO> getDTOSFromTicketCategorys(List<TicketCategory> ticketCategorys) {
         List<TicketCategoryDTO> ticketCategoryDTOS = ticketCategorys.stream()
-                .map(ticketCategory -> new TicketCategoryDTO(ticketCategory.getTicketCategoryID(), ticketCategory.getDescription(), ticketCategory.getPrice()))
-                .collect(Collectors.toList());
+                .map(ticketCategory -> new TicketCategoryDTO(ticketCategory.getTicketCategoryID(),
+                        ticketCategory.getDescription(),
+                        ticketCategory.getPrice()))
+                .toList();
 
         return ticketCategoryDTOS;
     }
@@ -50,12 +55,22 @@ public class EventsController {
     private List<EventDTO> getDTOSFromEvents(List<Event> events) {
         List<EventDTO> eventsDTOs = events.stream()
                 .map(event -> {
-                    List<TicketCategoryDTO> ticketCategoryDTOS = getDTOSFromTicketCategorys(ticketsManagementService.getAllTicketsForAnEvent(event));
-                    VenueDTO venueDTO = new VenueDTO(event.getVenue().getVenueID(), event.getVenue().getLocation(), event.getVenue().getType(), event.getVenue().getCapacity());
-                    return new EventDTO(event.getEventID(), venueDTO, event.getEventType().getEventTypeName(), event.getEventDescription(), event.getEventName(), event.getStartDate(), event.getEndDate(), ticketCategoryDTOS);
+                    List<TicketCategoryDTO> ticketCategoryDTOS = getDTOSFromTicketCategorys(ticketsManagementService
+                            .getAllTicketsForAnEvent(event));
+                    VenueDTO venueDTO = new VenueDTO(event.getVenue().getVenueID(),
+                            event.getVenue().getLocation(),
+                            event.getVenue().getType(),
+                            event.getVenue().getCapacity());
+                    return new EventDTO(event.getEventID(),
+                            venueDTO,
+                            event.getEventType().getEventTypeName(),
+                            event.getEventDescription(),
+                            event.getEventName(),
+                            event.getStartDate(),
+                            event.getEndDate(),
+                            ticketCategoryDTOS);
                 })
-                .collect(Collectors.toList());
-
+                .toList();
         return eventsDTOs;
     }
 }

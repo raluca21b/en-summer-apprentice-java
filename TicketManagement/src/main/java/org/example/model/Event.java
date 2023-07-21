@@ -12,39 +12,40 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="Event")
+@Table(name = "Event")
 public class Event implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="event_ID")
+    @Column(name = "event_ID")
     private Integer eventID;
 
-    @JoinColumn (name = "venue_ID", referencedColumnName = "venue_ID")
+    @JoinColumn(name = "venue_ID", referencedColumnName = "venue_ID")
     @ManyToOne
     private Venue venue;
 
-    @JoinColumn (name = "event_type_ID", referencedColumnName = "event_type_ID")
+    @JoinColumn(name = "event_type_ID", referencedColumnName = "event_type_ID")
     @ManyToOne
     private EventType eventType;
 
-    @Column(name="event_description")
+    @Column(name = "event_description")
     private String eventDescription;
 
-    @Column(name="event_name")
+    @Column(name = "event_name")
     private String eventName;
 
-    @Column(name="start_date")
+    @Column(name = "start_date")
     private LocalDateTime startDate;
 
 
-    @Column(name="end_date")
+    @Column(name = "end_date")
     private LocalDateTime endDate;
 
     public Event() {
     }
 
-    public Event(Integer eventID, Venue venue, EventType eventType, String eventDescription, String eventName, LocalDateTime startDate, LocalDateTime endDate) {
+    public Event(Integer eventID, Venue venue, EventType eventType, String eventDescription, String eventName,
+                 LocalDateTime startDate, LocalDateTime endDate) {
         this.eventID = eventID;
         this.venue = venue;
         this.eventType = eventType;

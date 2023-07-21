@@ -1,7 +1,6 @@
 package org.example.dtos;
 
 
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,7 +19,8 @@ public class EventDTO implements Serializable {
     public EventDTO() {
     }
 
-    public EventDTO(Integer eventID, VenueDTO venueDTO, String eventType, String eventDescription, String eventName, LocalDateTime startDate, LocalDateTime endDate, List<TicketCategoryDTO> ticketsCategory) {
+    public EventDTO(Integer eventID, VenueDTO venueDTO, String eventType, String eventDescription,
+                    String eventName, LocalDateTime startDate, LocalDateTime endDate, List<TicketCategoryDTO> ticketsCategory) {
         this.eventID = eventID;
         this.venueDTO = venueDTO;
         this.eventType = eventType;
@@ -96,12 +96,11 @@ public class EventDTO implements Serializable {
     }
 
 
-
     @Override
     public String toString() {
         return "EventDTO{" +
                 "eventID=" + eventID +
-                ", venueID=" + venueDTO +
+                ", venue=" + venueDTO +
                 ", eventType='" + eventType + '\'' +
                 ", eventDescription='" + eventDescription + '\'' +
                 ", eventName='" + eventName + '\'' +

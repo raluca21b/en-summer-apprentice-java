@@ -14,33 +14,34 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="Orders")
+@Table(name = "Orders")
 public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="order_ID")
+    @Column(name = "order_ID")
     private Integer orderID;
 
-    @JoinColumn (name = "customer_ID", referencedColumnName = "customer_ID")
+    @JoinColumn(name = "customer_ID", referencedColumnName = "customer_ID")
     @ManyToOne
     private Customer customer;
 
-    @JoinColumn (name = "ticket_category_ID", referencedColumnName = "ticket_category_ID")
+    @JoinColumn(name = "ticket_category_ID", referencedColumnName = "ticket_category_ID")
     @ManyToOne
     private TicketCategory ticketCategory;
-    @Column(name="ordered_at")
+    @Column(name = "ordered_at")
     private LocalDateTime orderedAt;
 
-    @Column(name="number_of_tickets")
+    @Column(name = "number_of_tickets")
     private Integer numberOfTickets;
 
-    @Column(name="total_price")
+    @Column(name = "total_price")
     private BigDecimal totalPrice;
 
     public Order() {
     }
 
-    public Order(Customer customer, TicketCategory ticketCategory, LocalDateTime orderedAt, Integer numberOfTickets, BigDecimal totalPrice) {
+    public Order(Customer customer, TicketCategory ticketCategory, LocalDateTime orderedAt,
+                 Integer numberOfTickets, BigDecimal totalPrice) {
         this.customer = customer;
         this.ticketCategory = ticketCategory;
         this.orderedAt = orderedAt;
@@ -48,7 +49,8 @@ public class Order implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public Order(Integer orderID, Customer customer, TicketCategory ticketCategory, LocalDateTime orderedAt, Integer numberOfTickets, BigDecimal totalPrice) {
+    public Order(Integer orderID, Customer customer, TicketCategory ticketCategory,
+                 LocalDateTime orderedAt, Integer numberOfTickets, BigDecimal totalPrice) {
         this.orderID = orderID;
         this.customer = customer;
         this.ticketCategory = ticketCategory;
