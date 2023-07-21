@@ -1,12 +1,7 @@
 package org.example.dtos;
 
 
-import org.example.model.Event;
-import org.example.model.EventType;
-import org.example.model.TicketCategory;
-import org.example.model.Venue;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +9,7 @@ import java.util.List;
 public class EventDTO implements Serializable {
 
     private Integer eventID;
-    private Venue venueID;
+    private VenueDTO venueDTO;
     private String eventType;
     private String eventDescription;
     private String eventName;
@@ -25,15 +20,15 @@ public class EventDTO implements Serializable {
     public EventDTO() {
     }
 
-    public EventDTO(Integer eventID, Venue venueID, String eventType, String eventDescription, String eventName, LocalDateTime startDate, LocalDateTime endDate) {
+    public EventDTO(Integer eventID, VenueDTO venueDTO, String eventType, String eventDescription, String eventName, LocalDateTime startDate, LocalDateTime endDate, List<TicketCategoryDTO> ticketsCategory) {
         this.eventID = eventID;
-        this.venueID = venueID;
+        this.venueDTO = venueDTO;
         this.eventType = eventType;
         this.eventDescription = eventDescription;
         this.eventName = eventName;
         this.startDate = startDate;
         this.endDate = endDate;
-
+        this.ticketsCategory = ticketsCategory;
     }
 
     public Integer getEventID() {
@@ -44,12 +39,12 @@ public class EventDTO implements Serializable {
         this.eventID = eventID;
     }
 
-    public Venue getVenueID() {
-        return venueID;
+    public VenueDTO getVenueDTO() {
+        return venueDTO;
     }
 
-    public void setVenueID(Venue venueID) {
-        this.venueID = venueID;
+    public void setVenueDTO(VenueDTO venueDTO) {
+        this.venueDTO = venueDTO;
     }
 
     public String getEventType() {
@@ -106,7 +101,7 @@ public class EventDTO implements Serializable {
     public String toString() {
         return "EventDTO{" +
                 "eventID=" + eventID +
-                ", venueID=" + venueID +
+                ", venueID=" + venueDTO +
                 ", eventType='" + eventType + '\'' +
                 ", eventDescription='" + eventDescription + '\'' +
                 ", eventName='" + eventName + '\'' +

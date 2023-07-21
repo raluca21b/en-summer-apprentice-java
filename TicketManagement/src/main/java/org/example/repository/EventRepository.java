@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface EventRepository extends JpaRepository<Event,Integer> {
     List<Event> getAllByVenueVenueIDAndEventTypeEventTypeName(Integer venueID,String eventTypeName);
+    List<Event> getAllByVenueVenueID(Integer venueID);
+    List<Event> getAllByEventTypeEventTypeName(String eventTypeName);
 }

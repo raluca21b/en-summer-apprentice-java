@@ -1,7 +1,14 @@
 package org.example.model;
 
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,11 +23,11 @@ public class Order implements Serializable {
 
     @JoinColumn (name = "customer_ID", referencedColumnName = "customer_ID")
     @ManyToOne
-    private Customer customerID;
+    private Customer customer;
 
     @JoinColumn (name = "ticket_category_ID", referencedColumnName = "ticket_category_ID")
     @ManyToOne
-    private TicketCategory ticketCategoryID;
+    private TicketCategory ticketCategory;
     @Column(name="ordered_at")
     private LocalDateTime orderedAt;
 
@@ -33,10 +40,18 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Integer orderID, Customer customerID, TicketCategory ticketCategoryID, LocalDateTime orderedAt, Integer numberOfTickets, BigDecimal totalPrice) {
+    public Order(Customer customer, TicketCategory ticketCategory, LocalDateTime orderedAt, Integer numberOfTickets, BigDecimal totalPrice) {
+        this.customer = customer;
+        this.ticketCategory = ticketCategory;
+        this.orderedAt = orderedAt;
+        this.numberOfTickets = numberOfTickets;
+        this.totalPrice = totalPrice;
+    }
+
+    public Order(Integer orderID, Customer customer, TicketCategory ticketCategory, LocalDateTime orderedAt, Integer numberOfTickets, BigDecimal totalPrice) {
         this.orderID = orderID;
-        this.customerID = customerID;
-        this.ticketCategoryID = ticketCategoryID;
+        this.customer = customer;
+        this.ticketCategory = ticketCategory;
         this.orderedAt = orderedAt;
         this.numberOfTickets = numberOfTickets;
         this.totalPrice = totalPrice;
@@ -50,20 +65,20 @@ public class Order implements Serializable {
         this.orderID = order_ID;
     }
 
-    public Customer getCustomerID() {
-        return customerID;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerID(Customer customer_ID) {
-        this.customerID = customer_ID;
+    public void setCustomer(Customer customer_ID) {
+        this.customer = customer_ID;
     }
 
-    public TicketCategory getTicketCategoryID() {
-        return ticketCategoryID;
+    public TicketCategory getTicketCategory() {
+        return ticketCategory;
     }
 
-    public void setTicketCategoryID(TicketCategory ticketCategoryID) {
-        this.ticketCategoryID = ticketCategoryID;
+    public void setTicketCategory(TicketCategory ticketCategoryID) {
+        this.ticketCategory = ticketCategoryID;
     }
 
     public LocalDateTime getOrderedAt() {
@@ -94,8 +109,8 @@ public class Order implements Serializable {
     public String toString() {
         return "Order{" +
                 "orderID=" + orderID +
-                ", customerID=" + customerID +
-                ", ticketCategoryID=" + ticketCategoryID +
+                ", customer=" + customer +
+                ", ticketCategory=" + ticketCategory +
                 ", ordered_at=" + orderedAt +
                 ", number_of_tickets=" + numberOfTickets +
                 ", total_price=" + totalPrice +

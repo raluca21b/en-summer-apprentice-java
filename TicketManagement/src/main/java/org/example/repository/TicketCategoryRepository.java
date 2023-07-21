@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface TicketCategoryRepository extends JpaRepository<TicketCategory,Integer> {
     List<TicketCategory> findTicketCategoriesByEvent(Event event);
+    TicketCategory findTicketCategoryByTicketCategoryID(Integer ticketCategoryId);
 }
