@@ -19,7 +19,7 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_ID")
-    private Integer orderID;
+    private int orderID;
 
     @JoinColumn(name = "customer_ID", referencedColumnName = "customer_ID")
     @ManyToOne
@@ -32,7 +32,7 @@ public class Order implements Serializable {
     private LocalDateTime orderedAt;
 
     @Column(name = "number_of_tickets")
-    private Integer numberOfTickets;
+    private int numberOfTickets;
 
     @Column(name = "total_price")
     private BigDecimal totalPrice;
@@ -41,7 +41,7 @@ public class Order implements Serializable {
     }
 
     public Order(Customer customer, TicketCategory ticketCategory, LocalDateTime orderedAt,
-                 Integer numberOfTickets, BigDecimal totalPrice) {
+                 int numberOfTickets, BigDecimal totalPrice) {
         this.customer = customer;
         this.ticketCategory = ticketCategory;
         this.orderedAt = orderedAt;
@@ -49,8 +49,8 @@ public class Order implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public Order(Integer orderID, Customer customer, TicketCategory ticketCategory,
-                 LocalDateTime orderedAt, Integer numberOfTickets, BigDecimal totalPrice) {
+    public Order(int orderID, Customer customer, TicketCategory ticketCategory,
+                 LocalDateTime orderedAt, int numberOfTickets, BigDecimal totalPrice) {
         this.orderID = orderID;
         this.customer = customer;
         this.ticketCategory = ticketCategory;
@@ -59,11 +59,11 @@ public class Order implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public Integer getOrderID() {
+    public int getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(Integer order_ID) {
+    public void setOrderID(int order_ID) {
         this.orderID = order_ID;
     }
 
@@ -91,11 +91,11 @@ public class Order implements Serializable {
         this.orderedAt = ordered_at;
     }
 
-    public Integer getNumberOfTickets() {
+    public int getNumberOfTickets() {
         return numberOfTickets;
     }
 
-    public void setNumberOfTickets(Integer number_of_tickets) {
+    public void setNumberOfTickets(int number_of_tickets) {
         this.numberOfTickets = number_of_tickets;
     }
 

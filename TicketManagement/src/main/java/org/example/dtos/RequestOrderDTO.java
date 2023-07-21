@@ -1,44 +1,43 @@
 package org.example.dtos;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+
 
 public class RequestOrderDTO implements Serializable {
-    private Integer eventID;
-    private Integer ticketCategoryID;
-    private Integer numberOfTickets;
+    private int eventID;
+    private int ticketCategoryID;
+    private int numberOfTickets;
 
     public RequestOrderDTO() {
     }
 
-    public RequestOrderDTO(Integer eventID, Integer ticketCategoryID, Integer numberOfTickets) {
+    public RequestOrderDTO(int eventID, int ticketCategoryID, int numberOfTickets) {
         this.eventID = eventID;
         this.ticketCategoryID = ticketCategoryID;
         this.numberOfTickets = numberOfTickets;
     }
 
-    public Integer getEventID() {
+    public int getEventID() {
         return eventID;
     }
 
-    public void setEventID(Integer eventID) {
+    public void setEventID(int eventID) {
         this.eventID = eventID;
     }
 
-    public Integer getTicketCategoryID() {
+    public int getTicketCategoryID() {
         return ticketCategoryID;
     }
 
-    public void setTicketCategoryID(Integer ticketCategoryID) {
+    public void setTicketCategoryID(int ticketCategoryID) {
         this.ticketCategoryID = ticketCategoryID;
     }
 
-    public Integer getNumberOfTickets() {
+    public int getNumberOfTickets() {
         return numberOfTickets;
     }
 
-    public void setNumberOfTickets(Integer numberOfTickets) {
+    public void setNumberOfTickets(int numberOfTickets) {
         this.numberOfTickets = numberOfTickets;
     }
 

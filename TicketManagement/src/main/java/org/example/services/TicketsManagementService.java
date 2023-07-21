@@ -76,7 +76,7 @@ public class TicketsManagementService implements IServices {
         Optional<TicketCategory> ticketCategory = ticketCategoryRepository.findTicketCategoryByTicketCategoryID(ticketCategoryID);
         if (ticketCategory.isEmpty()) {
             return Optional.empty();
-        } else if (!ticketCategory.get().getEvent().getEventID().equals(eventID)) {
+        } else if (ticketCategory.get().getEvent().getEventID() != eventID) {
             return Optional.empty();
         } else {
             BigDecimal totalPrice = BigDecimal.valueOf(numberOfTickets).multiply(ticketCategory.get().getPrice());

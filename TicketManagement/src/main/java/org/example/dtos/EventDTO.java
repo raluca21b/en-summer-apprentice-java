@@ -7,7 +7,7 @@ import java.util.List;
 
 public class EventDTO implements Serializable {
 
-    private Integer eventID;
+    private int eventID;
     private VenueDTO venueDTO;
     private String eventType;
     private String eventDescription;
@@ -19,7 +19,7 @@ public class EventDTO implements Serializable {
     public EventDTO() {
     }
 
-    public EventDTO(Integer eventID, VenueDTO venueDTO, String eventType, String eventDescription,
+    public EventDTO(int eventID, VenueDTO venueDTO, String eventType, String eventDescription,
                     String eventName, LocalDateTime startDate, LocalDateTime endDate, List<TicketCategoryDTO> ticketsCategory) {
         this.eventID = eventID;
         this.venueDTO = venueDTO;
@@ -31,11 +31,11 @@ public class EventDTO implements Serializable {
         this.ticketsCategory = ticketsCategory;
     }
 
-    public Integer getEventID() {
+    public int getEventID() {
         return eventID;
     }
 
-    public void setEventID(Integer eventID) {
+    public void setEventID(int eventID) {
         this.eventID = eventID;
     }
 

@@ -15,7 +15,7 @@ public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="customer_ID")
-    private Integer customerID;
+    private int customerID;
 
     @Column(name="customer_name")
     private String customerName;
@@ -27,17 +27,17 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    public Customer(Integer customerID, String customerName, String email) {
+    public Customer(int customerID, String customerName, String email) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.email = email;
     }
 
-    public Integer getCustomerID() {
+    public int getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(Integer customer_ID) {
+    public void setCustomerID(int customer_ID) {
         this.customerID = customer_ID;
     }
 

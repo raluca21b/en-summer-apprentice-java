@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface TicketCategoryRepository extends JpaRepository<TicketCategory,Integer> {
     List<TicketCategory> findTicketCategoriesByEvent(Event event);
-    Optional<TicketCategory> findTicketCategoryByTicketCategoryID(Integer ticketCategoryId);
+    Optional<TicketCategory> findTicketCategoryByTicketCategoryID(int ticketCategoryId);
 }

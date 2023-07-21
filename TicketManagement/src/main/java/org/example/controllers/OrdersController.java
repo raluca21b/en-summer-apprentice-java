@@ -19,7 +19,7 @@ import java.util.Optional;
 @RestController
 public class OrdersController {
     private final TicketsManagementService ticketsManagementService;
-    private static final Integer customerID = 1;
+    private static final int customerID = 1;
 
     public OrdersController(TicketsManagementService ticketsManagementService) {
         this.ticketsManagementService = ticketsManagementService;

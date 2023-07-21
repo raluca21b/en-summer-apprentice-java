@@ -3,26 +3,26 @@ package org.example.dtos;
 import java.io.Serializable;
 
 public class VenueDTO implements Serializable {
-    private Integer venueID;
+    private int venueID;
     private String location;
     private String type;
-    private Integer capacity;
+    private int capacity;
 
     public VenueDTO() {
     }
 
-    public VenueDTO(Integer venueID, String location, String type, Integer capacity) {
+    public VenueDTO(int venueID, String location, String type, int capacity) {
         this.venueID = venueID;
         this.location = location;
         this.type = type;
         this.capacity = capacity;
     }
 
-    public Integer getVenueID() {
+    public int getVenueID() {
         return venueID;
     }
 
-    public void setVenueID(Integer venueID) {
+    public void setVenueID(int venueID) {
         this.venueID = venueID;
     }
 
@@ -42,11 +42,11 @@ public class VenueDTO implements Serializable {
         this.type = type;
     }
 
-    public Integer getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(Integer capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 

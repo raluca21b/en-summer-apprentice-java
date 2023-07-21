@@ -22,14 +22,14 @@ public class EventsController {
     }
 
     @GetMapping("/events")
-    public List<EventDTO> getEvents(@RequestParam(value = "venueID", required = false) int venueID,
+    public List<EventDTO> getEvents(@RequestParam(value = "venueID", required = false) Integer venueID,
                                     @RequestParam(value = "eventTypeName", required = false) String eventTypeName) {
 
         List<Event> events;
 
-        if (venueID == 0 && eventTypeName == null) {
+        if (venueID == null && eventTypeName == null) {
             events = ticketsManagementService.getAllEvents();
-        } else if (venueID == 0) {
+        } else if (venueID == null) {
             events = ticketsManagementService.getAllEventsByEventTypeName(eventTypeName);
         } else if (eventTypeName == null) {
 

@@ -15,7 +15,7 @@ public class Venue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="venue_ID")
-    private Integer venueID;
+    private int venueID;
 
     @Column(name="location")
     private String location;
@@ -24,23 +24,23 @@ public class Venue {
     private String type;
 
     @Column(name="capacity")
-    private Integer capacity;
+    private int capacity;
 
     public Venue() {
     }
 
-    public Venue(Integer venueID, String location, String type, Integer capacity) {
+    public Venue(int venueID, String location, String type, int capacity) {
         this.venueID = venueID;
         this.location = location;
         this.type = type;
         this.capacity = capacity;
     }
 
-    public Integer getVenueID() {
+    public int getVenueID() {
         return venueID;
     }
 
-    public void setVenueID(Integer venueID) {
+    public void setVenueID(int venueID) {
         this.venueID = venueID;
     }
 
@@ -60,11 +60,11 @@ public class Venue {
         this.type = type;
     }
 
-    public Integer getCapacity() {
+    public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(Integer capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 

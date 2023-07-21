@@ -6,22 +6,22 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class OrderDTO implements Serializable {
-    private Integer eventID;
+    private int eventID;
     private LocalDateTime orderedAt;
-    private Integer ticketCategoryID;
-    private Integer numberOfTickets;
+    private int ticketCategoryID;
+    private int numberOfTickets;
     private BigDecimal totalPrice;
 
     public OrderDTO() {
     }
 
-    public OrderDTO(Integer eventID, Integer ticketCategoryID, Integer numberOfTickets) {
+    public OrderDTO(int eventID, int ticketCategoryID, int numberOfTickets) {
         this.eventID = eventID;
         this.ticketCategoryID = ticketCategoryID;
         this.numberOfTickets = numberOfTickets;
     }
 
-    public OrderDTO(Integer eventID, LocalDateTime orderedAt, Integer ticketCategoryID, Integer numberOfTickets, BigDecimal totalPrice) {
+    public OrderDTO(int eventID, LocalDateTime orderedAt, int ticketCategoryID, int numberOfTickets, BigDecimal totalPrice) {
         this.eventID = eventID;
         this.orderedAt = orderedAt;
         this.ticketCategoryID = ticketCategoryID;
@@ -29,11 +29,11 @@ public class OrderDTO implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public Integer getEventID() {
+    public int getEventID() {
         return eventID;
     }
 
-    public void setEventID(Integer eventID) {
+    public void setEventID(int eventID) {
         this.eventID = eventID;
     }
 
@@ -45,19 +45,19 @@ public class OrderDTO implements Serializable {
         this.orderedAt = orderedAt;
     }
 
-    public Integer getTicketCategoryID() {
+    public int getTicketCategoryID() {
         return ticketCategoryID;
     }
 
-    public void setTicketCategoryID(Integer ticketCategoryID) {
+    public void setTicketCategoryID(int ticketCategoryID) {
         this.ticketCategoryID = ticketCategoryID;
     }
 
-    public Integer getNumberOfTickets() {
+    public int getNumberOfTickets() {
         return numberOfTickets;
     }
 
-    public void setNumberOfTickets(Integer numberOfTickets) {
+    public void setNumberOfTickets(int numberOfTickets) {
         this.numberOfTickets = numberOfTickets;
     }
 

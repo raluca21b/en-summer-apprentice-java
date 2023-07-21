@@ -18,7 +18,7 @@ public class Event implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "event_ID")
-    private Integer eventID;
+    private int eventID;
 
     @JoinColumn(name = "venue_ID", referencedColumnName = "venue_ID")
     @ManyToOne
@@ -44,7 +44,7 @@ public class Event implements Serializable {
     public Event() {
     }
 
-    public Event(Integer eventID, Venue venue, EventType eventType, String eventDescription, String eventName,
+    public Event(int eventID, Venue venue, EventType eventType, String eventDescription, String eventName,
                  LocalDateTime startDate, LocalDateTime endDate) {
         this.eventID = eventID;
         this.venue = venue;
@@ -55,11 +55,11 @@ public class Event implements Serializable {
         this.endDate = endDate;
     }
 
-    public Integer getEventID() {
+    public int getEventID() {
         return eventID;
     }
 
-    public void setEventID(Integer event_ID) {
+    public void setEventID(int event_ID) {
         this.eventID = event_ID;
     }
 
